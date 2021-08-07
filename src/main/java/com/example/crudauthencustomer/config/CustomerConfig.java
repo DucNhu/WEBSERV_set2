@@ -13,9 +13,9 @@ public class CustomerConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth){
         try{
             auth.inMemoryAuthentication()
-                    .withUser("user").password("{noop}123456").roles("USER")
+                    .withUser("user").password("{noop}123456").roles("CUSTOMER")
                     .and()
-                    .withUser("admin").password("{noop}123456").roles("ADMIN");
+                    .withUser("admin").password("{noop}123456").roles("STAFF");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -25,9 +25,9 @@ public class CustomerConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/**").hasAnyRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/**").hasAnyRole("STAFF")
+                .antMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("CUSTOMER")
+                .antMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("STAFF")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

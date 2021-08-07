@@ -1,8 +1,7 @@
 package com.example.crudauthencustomer.dao;
 
-import com.example.crudauthencustomer.Models.Customer;
+import com.example.crudauthencustomer.Models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.User;
 
-public interface respository extends JpaRepository<Customer, Long> {
+public interface respository extends JpaRepository<Product, Long> {
 }
